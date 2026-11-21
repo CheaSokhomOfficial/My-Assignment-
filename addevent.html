@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EventHub - Add New Event</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Our own CSS (internal) -->
+  <style>
+    /* ===== Basic page style ===== */
+    body {
+      background-color: #f4f3fb;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    /* ===== Sidebar ===== */
+    .sidebar {
+      width: 200px;
+      min-height: 100vh;
+      background-color: #2a2563; /* dark navy/purple */
+    }
+
+    .sidebar .nav-link {
+      border-radius: 8px;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    .sidebar .nav-link:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* the selected menu item */
+    .sidebar .active-link {
+      background-color: #5b3fd1;
+    }
+
+    /* ===== Top bar ===== */
+    .topbar {
+      background-color: #ffffff;
+      border-bottom: 1px solid #e3e1f1;
+    }
+
+    .purple-text {
+      color: #4b34c4;
+    }
+
+    /* ===== Form card ===== */
+    .form-card {
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .form-label {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .form-control,
+    .form-select {
+      background-color: #f5f5fb;
+      border: 1px solid #dcdaf0;
+    }
+
+    /* purple glow when clicking an input */
+    .form-control:focus,
+    .form-select:focus {
+      border-color: #5b3fd1;
+      box-shadow: 0 0 0 0.2rem rgba(91, 63, 209, 0.2);
+    }
+
+    /* ===== Buttons ===== */
+    .btn-purple {
+      background-color: #4b34c4;
+      color: #ffffff;
+      border: none;
+      padding: 8px 20px;
+    }
+
+    .btn-purple:hover {
+      background-color: #3a26a0;
+      color: #ffffff;
+    }
+
+    .btn-light-purple {
+      background-color: #e6e4f7;
+      color: #2a2563;
+      border: none;
+      padding: 8px 20px;
+    }
+
+    .btn-light-purple:hover {
+      background-color: #d5d2f0;
+    }
+
+    /* ===== Small screens: sidebar on top ===== */
+    @media (max-width: 767px) {
+      .d-flex { flex-direction: column; }
+      .sidebar { width: 100%; min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="d-flex">
+
+    <!-- ========== SIDEBAR ========== -->
+    <nav class="sidebar text-white p-3">
+      <div class="text-center mb-4">
+        <i class="bi bi-calendar3 fs-2"></i>
+        <h5 class="fw-bold mt-1">EventHub</h5>
+      </div>
+
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a href="#" class="nav-link text-white"><i class="bi bi-house-door me-2"></i>Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link text-white active-link"><i class="bi bi-plus-lg me-2"></i>Add Event</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link text-white"><i class="bi bi-list-ul me-2"></i>View Events</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link text-white"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <div class="main-content flex-grow-1">
+
+      <!-- Top bar -->
+      <header class="topbar d-flex justify-content-between align-items-center px-4 py-3">
+        <h4 class="fw-bold m-0"><i class="bi bi-plus-lg me-2 purple-text"></i>Add New Event</h4>
+        <i class="bi bi-person-circle fs-3 purple-text"></i>
+      </header>
+
+      <!-- Form card -->
+      <div class="p-4">
+        <div class="card form-card p-4">
+          <form>
+            <div class="row g-3">
+
+              <!-- LEFT COLUMN -->
+              <div class="col-md-6">
+
+                <div class="mb-3">
+                  <label for="title" class="form-label">Event Title</label>
+                  <input type="text" class="form-control" id="title" placeholder="Enter event title">
+                </div>
+
+                <div class="mb-3">
+                  <label for="category" class="form-label">Category</label>
+                  <select class="form-select" id="category">
+                    <option selected>Select category</option>
+                    <option>Conference</option>
+                    <option>Workshop</option>
+                    <option>Party</option>
+                    <option>Sports</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label for="date" class="form-label">Date</label>
+                  <input type="date" class="form-control" id="date">
+                </div>
+
+                <div class="mb-3">
+                  <label for="location" class="form-label">Location</label>
+                  <input type="text" class="form-control" id="location" placeholder="Enter location">
+                </div>
+
+              </div>
+
+              <!-- RIGHT COLUMN -->
+              <div class="col-md-6">
+
+                <div class="mb-3">
+                  <label for="description" class="form-label">Description</label>
+                  <textarea class="form-control" id="description" rows="4" placeholder="Enter event description..."></textarea>
+                </div>
+
+                <div class="mb-3">
+                  <label for="capacity" class="form-label">Capacity</label>
+                  <input type="number" class="form-control" id="capacity" placeholder="Enter maximum attendees">
+                </div>
+
+                <div class="mb-3">
+                  <label for="status" class="form-label">Status</label>
+                  <select class="form-select" id="status">
+                    <option selected>Select status</option>
+                    <option>Upcoming</option>
+                    <option>Ongoing</option>
+                    <option>Completed</option>
+                    <option>Cancelled</option>
+                  </select>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="mt-2">
+              <button type="submit" class="btn btn-purple me-2"><i class="bi bi-floppy me-2"></i>Save Event</button>
+              <button type="reset" class="btn btn-light-purple"><i class="bi bi-x-lg me-2"></i>Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
